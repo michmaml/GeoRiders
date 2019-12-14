@@ -2,27 +2,19 @@ package com.example.mobilegame;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread gen_thread;
-    private RectPlayer rplayer;
-    private Point playerPoint;
-    private ObstacleManager obstacleManager;
-
+    private SceneManager manager;
 
     public GamePanel(Context context){
         super(context);
         getHolder().addCallback(this);
         gen_thread = new MainThread(getHolder(), this);
-        rplayer = new RectPlayer(new Rect(100, 100, 100, 100), Color.rgb(255, 0, 0));
-        playerPoint = new Point(150, 150);
-        obstacleManager = new ObstacleManager(200, 350, 75, Color.WHITE);
+        manager = new SceneManager();
         setFocusable(true);
     }
 
@@ -34,6 +26,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder){
         gen_thread = new MainThread(getHolder(), this);
+        Constants.INIT_TIME = System.currentTimeMillis();
         gen_thread.setRunning(true);
         gen_thread.start();
     }
@@ -41,7 +34,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(SurfaceHolder holder){
         boolean retry = true;
-        while(true){
+        while(retry){
             try {
                 gen_thread.setRunning(false);
                 gen_thread.join();
@@ -54,25 +47,18 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
-        switch(event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-            case MotionEvent.ACTION_MOVE:
-                playerPoint.set((int)event.getX(), (int)event.getY());
-        }
+        manager.receiveTouch(event);
         return true;
         //return super.onTouchEvent(event);
     }
 
     public void update(){
-        rplayer.update(playerPoint);
-        obstacleManager.update();
+        manager.update();
     }
 
     @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
-        canvas.drawColor(Color.WHITE);
-        rplayer.draw(canvas);
-        obstacleManager.draw(canvas);
+        manager.draw(canvas);
     }
 }

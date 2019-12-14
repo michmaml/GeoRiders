@@ -1,6 +1,8 @@
 package com.example.mobilegame;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 import java.util.ArrayList;
 
@@ -11,6 +13,8 @@ public class ObstacleManager {
     private int obstacleHeight;
     private int colour;
     private long startTime;
+    private long initTime;
+    private int score = 0;
 
     public ObstacleManager(int playerGap, int obstacleGap, int obstacleHeight, int colour){
         this.playerGap = playerGap;
@@ -18,9 +22,17 @@ public class ObstacleManager {
         this.obstacleHeight = obstacleHeight;
         this.colour = colour;
 
-        startTime = System.currentTimeMillis();
+        startTime = initTime = System.currentTimeMillis();
         obstacles = new ArrayList<>();
         populateObstacles();
+    }
+
+    public boolean playerCollide(RectPlayer player){
+        for(Obstacle obstacle : obstacles){
+            if(obstacle.playerCollide(player))
+                return true;
+        }
+        return false;
     }
 
     public void populateObstacles(){
@@ -34,10 +46,13 @@ public class ObstacleManager {
     }
 
     public void update(){
+        if(startTime < Constants.INIT_TIME){
+            startTime = Constants.INIT_TIME;
+        }
         int passedTime = (int)(System.currentTimeMillis() - startTime);
         startTime = System.currentTimeMillis();
         //how fast is it moving
-        float speed = Constants.SCREEN_HEIGHT/10000.0f;
+        float speed = (float)(Math.sqrt(1 +(startTime - initTime)/2000.0)) * Constants.SCREEN_HEIGHT/10000.0f; //increases over time
         for(Obstacle obstacle : obstacles){
             obstacle.incrementY(speed * passedTime);
         }                                                                   //change to width
@@ -45,6 +60,7 @@ public class ObstacleManager {
             int xStart = (int) (Math.random()*(Constants.SCREEN_WIDTH - playerGap));
             obstacles.add(0, new Obstacle(obstacleHeight, colour, xStart, obstacles.get(0).getRectangle().top -  obstacleHeight - obstacleGap, playerGap));
             obstacles.remove(obstacles.size() - 1);
+            score++;
         }
     }
 
@@ -52,5 +68,9 @@ public class ObstacleManager {
         for(Obstacle obstacle : obstacles){
             obstacle.draw(canvas);
         }
+        Paint paint = new Paint();
+        paint.setTextSize(100);
+        paint.setColor(Color.MAGENTA);
+        canvas.drawText(""+ score, 50, 50 + paint.descent() - paint.ascent(), paint);
     }
 }
