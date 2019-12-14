@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Mobile Game</string>
+    <string name="gameTitle">GeoRiders</string>
+    <string name="comeBack">Back</string>
+    <string name="description0">GeoRiders is the final project for COMP3330 - Interactive Mobile Application Design and Programming</string>
+    <string name="description1">The aim of the player is to fly the furthest by avoiding obstacles</string>
+    <string name="description2">This game utilizes gyroscope and concurrency</string>
+    <string name="signature"> Original design and code by Michal J Sekulski</string>
+    <string name="musicMenu">Menu music</string>
+    <string name="musicGame">Game music</string>
+    <string name="email">Enjoying the game?</string>
+    <string name="email2">Let others know about it</string>
+    <string name="arrow">➜</string>
+    <string name="switch_txt">Switch</string>
+    <string name="temp_filler">But it wont happen</string>
+    <string name="gamePaused">Game Paused</string>
+    <string name="goBackToMenu">Menu</string>
+</resources>

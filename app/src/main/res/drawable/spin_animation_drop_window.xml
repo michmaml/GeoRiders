@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/backganimate" android:oneshot="false">
+    <item android:drawable="@drawable/drop_window00" android:duration="100" />
+    <item android:drawable="@drawable/drop_window01" android:duration="100" />
+    <item android:drawable="@drawable/drop_window02" android:duration="100" />
+    <item android:drawable="@drawable/drop_window03" android:duration="100" />
+    <item android:drawable="@drawable/drop_window04" android:duration="100" />
+    <item android:drawable="@drawable/drop_window05" android:duration="100" />
+    <item android:drawable="@drawable/drop_window06" android:duration="100" />
+    <item android:drawable="@drawable/drop_window07" android:duration="100" />
+    <item android:drawable="@drawable/drop_window08" android:duration="100" />
+    <item android:drawable="@drawable/drop_window09" android:duration="100" />
+    <item android:drawable="@drawable/drop_window10" android:duration="100" />
+    <item android:drawable="@drawable/drop_window11" android:duration="100" />
+    <item android:drawable="@drawable/drop_window12" android:duration="100" />
+    <item android:drawable="@drawable/drop_window13" android:duration="100" />
+    <item android:drawable="@drawable/drop_window14" android:duration="100" />
+    <item android:drawable="@drawable/drop_window15" android:duration="100" />
+</animation-list>
