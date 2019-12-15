@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Button playB, settingsB, aboutB;
     ImageView img;
     HomeWatcher mHomeWatcher;
+    final private MediaPlayer musicPlayer = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,25 +47,37 @@ public class MainActivity extends AppCompatActivity {
         playB = findViewById(R.id.playButton);
         settingsB = findViewById(R.id.settingsButton);
         aboutB = findViewById(R.id.aboutButton);
+        musicPlayer.create(this, R.raw.game_tune);
+
+
+        //External_booleans.setMenu_music_switch(true); //menu music is playing, green button
+        //External_booleans.setButton_sound_effects(true); //buttons sound effect is enabled
 
         playB.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
+                    musicPlayer.start();
                 startActivity(new Intent(MainActivity.this, PlayGame.class));
-                CustomIntent.customType(MainActivity.this,"up-to-bottom");
+                CustomIntent.customType(MainActivity.this, "up-to-bottom");
             }
         });
 
         settingsB.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
+                    musicPlayer.start();
                 startActivity(new Intent(MainActivity.this, SettingsGame.class));
-                CustomIntent.customType(MainActivity.this,"bottom-to-up");
+                CustomIntent.customType(MainActivity.this, "bottom-to-up");
+
             }
         });
 
         aboutB.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
+                    musicPlayer.start();
                 startActivity(new Intent(MainActivity.this, AboutGame.class));
-                CustomIntent.customType(MainActivity.this,"left-to-right");
+                CustomIntent.customType(MainActivity.this, "left-to-right");
             }
         });
 
@@ -92,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
         mHomeWatcher.startWatch();
         /*-----------End of Music Handler-----------*/
     }
-
-
 
     /*-------------Music Handler----------------*/
     //Bind/Unbind music service

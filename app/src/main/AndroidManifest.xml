@@ -17,7 +17,8 @@
             android:theme="@style/AppTheme.PopMe"></activity>
         <activity
             android:name=".PlayGame"
-
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".AboutGame"

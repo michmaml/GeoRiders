@@ -89,13 +89,13 @@
         app:fontFamily="@font/roboto_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintHorizontal_bias="0.88"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.335" />
 
     <Button
-        android:id="@+id/musicGame"
+        android:id="@+id/button_sound_effect"
         android:layout_width="300dp"
         android:layout_height="29dp"
         android:background="@drawable/switch_btn"

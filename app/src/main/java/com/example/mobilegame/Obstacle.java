@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-public class Obstacle implements GameObject {
+public class Obstacle implements GameObject{
 
     private Rect rectangle;
     private Rect rectangle2;
@@ -41,6 +41,6 @@ public class Obstacle implements GameObject {
 
     @Override
     public void update() {
-
+        //required by GameObject
     }
 }
