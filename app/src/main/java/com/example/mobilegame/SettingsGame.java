@@ -7,11 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +23,6 @@ public class SettingsGame extends AppCompatActivity {
     Button menu_m, button_s_effect, back_b, email_b;
     ImageView imgs;
     HomeWatcher mHomeWatcher;
-    final private MediaPlayer musicPlayer = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,20 +49,16 @@ public class SettingsGame extends AppCompatActivity {
         email_b = findViewById(R.id.heartSend);
         menu_m = findViewById(R.id.musicMenu);
         button_s_effect = findViewById(R.id.button_sound_effect);
-        musicPlayer.create(this, R.raw.game_tune);
 
         if(External_booleans.menu_music_switch)                                 //checks if the menu music is enabled
             menu_m.setBackgroundResource(R.drawable.switch_notclicked);
         else if(!External_booleans.menu_music_switch)                           //if the music was previously disabled set other button
             menu_m.setBackgroundResource(R.drawable.switch_clicked);
 
-        //External_booleans.button_sound.create(this, R.raw.game_tune);
-
         menu_m.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
-                    musicPlayer.start();
-
+                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 if(External_booleans.menu_music_switch){                            //if menu music is playing
                     if (mServ != null) {
                         mServ.stopMusic();                                          //stop it
@@ -81,20 +76,20 @@ public class SettingsGame extends AppCompatActivity {
             }
         });
 
-        if(External_booleans.button_sound_effects)                                 //checks if the button effects is enabled
+        if(External_booleans.button_vibration_effects)                                 //checks if the button effects is enabled
             button_s_effect.setBackgroundResource(R.drawable.switch_notclicked);
-        else if(!External_booleans.button_sound_effects)                           //if the music was previously disabled set other button
+        else if(!External_booleans.button_vibration_effects)                           //if the music was previously disabled set other button
             button_s_effect.setBackgroundResource(R.drawable.switch_clicked);
 
         button_s_effect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
-                    musicPlayer.start();
-                if(External_booleans.getButton_sound_effects()) {
-                    External_booleans.setButton_sound_effects(false);
+                if(External_booleans.button_vibration_effects)                         //checks if the button sound effect is enabled
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                if(External_booleans.getButton_vibration_effects()) {
+                    External_booleans.setButton_vibration_effects(false);
                     button_s_effect.setBackgroundResource(R.drawable.switch_clicked);
-                }else if(!External_booleans.getButton_sound_effects()){
-                    External_booleans.setButton_sound_effects(true);
+                }else if(!External_booleans.getButton_vibration_effects()){
+                    External_booleans.setButton_vibration_effects(true);
                     button_s_effect.setBackgroundResource(R.drawable.switch_notclicked);
                 }
             }
@@ -102,8 +97,8 @@ public class SettingsGame extends AppCompatActivity {
 
         back_b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
-                    musicPlayer.start();
+                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(SettingsGame.this, MainActivity.class));
                 CustomIntent.customType(SettingsGame.this,"up-to-bottom");
             }
@@ -111,8 +106,8 @@ public class SettingsGame extends AppCompatActivity {
 
         email_b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
-                    musicPlayer.start();
+                if(External_booleans.button_vibration_effects)                         //checks if the button sound effect is enabled
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 openShare();
             }
         });

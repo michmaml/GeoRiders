@@ -1,17 +1,11 @@
 package com.example.mobilegame;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.PowerManager;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -25,9 +19,7 @@ public class PlayGame_Menu extends Activity {
 
     Button closeWindow, goBackToMenu, inGameMusic;
     ImageView imgpm;
-    Boolean b_g;
     PlayGame pg = new PlayGame();
-    HomeWatcher hm_g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +38,7 @@ public class PlayGame_Menu extends Activity {
 
         closeWindow = findViewById(R.id.Resume);
         goBackToMenu = findViewById(R.id.GoBackToMenu);
-        //inGameMusic = findViewById(R.id.ControlMusic);
+        inGameMusic = findViewById(R.id.ControlMusic);
         imgpm = findViewById(R.id.background_anim);
 
         imgpm.setBackgroundResource(R.drawable.spin_animation_drop_window);
@@ -56,17 +48,39 @@ public class PlayGame_Menu extends Activity {
 
         closeWindow.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
                 finish();
-                //pg.getPause().setBackgroundResource(R.drawable.pause_notclicked);
+                startActivity(new Intent(PlayGame_Menu.this, PlayGame.class));
             }
 
         });
         goBackToMenu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
                 startActivity(new Intent(PlayGame_Menu.this, MainActivity.class));
                 CustomIntent.customType(PlayGame_Menu.this, "bottom-to-up");
                 //pg.getPause().setBackgroundResource(R.drawable.pause_notclicked);
+            }
+        });
+
+        if(External_booleans.game_music_switch)                                 //checks if the game music is enabled
+            inGameMusic.setBackgroundResource(R.drawable.switch_notclicked);
+        else if(!External_booleans.game_music_switch)                           //if the music was previously disabled set other button
+            inGameMusic.setBackgroundResource(R.drawable.switch_clicked);
+
+        inGameMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(External_booleans.getGame_music_switch()){
+                    External_booleans.setGame_music_switch(false);
+                    inGameMusic.setBackgroundResource(R.drawable.switch_clicked);
+                    PlayGame.musicPlayer.stop();
+                } else if(!External_booleans.getGame_music_switch()){
+                    External_booleans.setGame_music_switch(true);
+                    inGameMusic.setBackgroundResource(R.drawable.switch_notclicked);
+                    PlayGame.musicPlayer.start();
+                }
             }
         });
 
@@ -85,28 +99,5 @@ public class PlayGame_Menu extends Activity {
         params.y = -20;
 
         getWindow().setAttributes(params);
-
-/*
-
-        b_g = true;
-        inGameMusic.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(PlayGame_Menu.this, MainActivity.class));
-               /* if(b_g){
-                    if (mServ != null) {
-                        mServ.stopMusic();
-                    }
-                    b_g = false;
-                    inGameMusic.setBackgroundResource(R.drawable.switch_clicked);
-                }else if(!b_g){
-                    if (mServ != null) {
-                        mServ.startMusic();
-                    }
-                    b_g = true;
-                    inGameMusic.setBackgroundResource(R.drawable.switch_notclicked);
-                }*/
     }
-    //});
-
-
 }

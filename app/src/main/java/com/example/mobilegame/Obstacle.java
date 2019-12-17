@@ -12,6 +12,7 @@ public class Obstacle implements GameObject{
 
     public Obstacle(int rectHeight, int colour, int startX, int startY, int playerGap){
         this.colour = colour;
+        //l,r,t,b
         rectangle = new Rect(0, startY, startX, startY + rectHeight);
         rectangle2 = new Rect(startX + playerGap, startY, Constants.SCREEN_WIDTH, startY + rectHeight);
     }

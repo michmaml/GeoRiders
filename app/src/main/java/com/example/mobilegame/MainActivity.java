@@ -7,11 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     Button playB, settingsB, aboutB;
     ImageView img;
     HomeWatcher mHomeWatcher;
-    final private MediaPlayer musicPlayer = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +46,11 @@ public class MainActivity extends AppCompatActivity {
         playB = findViewById(R.id.playButton);
         settingsB = findViewById(R.id.settingsButton);
         aboutB = findViewById(R.id.aboutButton);
-        musicPlayer.create(this, R.raw.game_tune);
-
-
-        //External_booleans.setMenu_music_switch(true); //menu music is playing, green button
-        //External_booleans.setButton_sound_effects(true); //buttons sound effect is enabled
 
         playB.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
-                    musicPlayer.start();
+                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(MainActivity.this, PlayGame.class));
                 CustomIntent.customType(MainActivity.this, "up-to-bottom");
             }
@@ -64,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
         settingsB.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
-                    musicPlayer.start();
+                if(External_booleans.button_vibration_effects)                   //checks if the button sound effect is enabled
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(MainActivity.this, SettingsGame.class));
                 CustomIntent.customType(MainActivity.this, "bottom-to-up");
 
@@ -74,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
         aboutB.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
-                    musicPlayer.start();
+                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(MainActivity.this, AboutGame.class));
                 CustomIntent.customType(MainActivity.this, "left-to-right");
             }

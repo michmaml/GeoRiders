@@ -7,11 +7,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.PowerManager;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,7 +23,6 @@ public class AboutGame extends AppCompatActivity {
     Button back;
     ImageView imga;
     HomeWatcher mHomeWatcher;
-    final private MediaPlayer musicPlayer = new MediaPlayer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +44,11 @@ public class AboutGame extends AppCompatActivity {
         frameAnimation.start();
 
         back = findViewById(R.id.backButton);
-        musicPlayer.create(this, R.raw.game_tune);
-        //External_booleans.button_sound.create(this, R.raw.game_tune);
 
         back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                if(External_booleans.button_sound_effects)                          //checks if the button sound effect is enabled
-                    musicPlayer.start();
+                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(AboutGame.this, MainActivity.class));
                 CustomIntent.customType(AboutGame.this,"right-to-left");
 
