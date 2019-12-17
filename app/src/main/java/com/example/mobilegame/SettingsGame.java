@@ -44,11 +44,11 @@ public class SettingsGame extends AppCompatActivity {
         frameAnimation.start();
 
 
-        button_s_effect = findViewById(R.id.button_sound_effect);
+        button_s_effect = findViewById(R.id.button_vibration_effect);
         back_b = findViewById(R.id.backButtonSettings);
         email_b = findViewById(R.id.heartSend);
         menu_m = findViewById(R.id.musicMenu);
-        button_s_effect = findViewById(R.id.button_sound_effect);
+        button_s_effect = findViewById(R.id.button_vibration_effect);
 
         if(External_booleans.menu_music_switch)                                 //checks if the menu music is enabled
             menu_m.setBackgroundResource(R.drawable.switch_notclicked);

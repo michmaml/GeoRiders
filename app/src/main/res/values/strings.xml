@@ -7,7 +7,7 @@
     <string name="description2">This game utilizes gyroscope and concurrency</string>
     <string name="signature"> Original design and code by Michal J Sekulski</string>
     <string name="musicMenu">Menu music</string>
-    <string name="musicGame">Button clicks</string>
+    <string name="musicGame">Button vibration</string>
     <string name="email">Enjoying the game?</string>
     <string name="email2">Let others know about it</string>
     <string name="arrow">➜</string>
