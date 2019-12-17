@@ -13,6 +13,7 @@
     <string name="arrow">➜</string>
     <string name="switch_txt">Switch</string>
     <string name="temp_filler">But it wont happen</string>
-    <string name="gamePaused">Game Paused</string>
+    <string name="almostGame">Controls</string>
+    <string name="chooseControls">Choose controls</string>
     <string name="goBackToMenu">Menu</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.example.mobilegame;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -8,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -17,7 +17,7 @@ import maes.tech.intentanim.CustomIntent;
 
 public class PlayGame_Menu extends Activity {
 
-    Button closeWindow, goBackToMenu, inGameMusic;
+    Button startGame, goBackToMenu, controlsMan, controlsTil;
     ImageView imgpm;
     PlayGame pg = new PlayGame();
 
@@ -36,9 +36,10 @@ public class PlayGame_Menu extends Activity {
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
 
-        closeWindow = findViewById(R.id.Resume);
+        startGame = findViewById(R.id.PlayGame);
         goBackToMenu = findViewById(R.id.GoBackToMenu);
-        inGameMusic = findViewById(R.id.ControlMusic);
+        controlsMan = findViewById(R.id.ManualC);
+        controlsTil = findViewById(R.id.TiltingC);
         imgpm = findViewById(R.id.background_anim);
 
         imgpm.setBackgroundResource(R.drawable.spin_animation_drop_window);
@@ -46,44 +47,51 @@ public class PlayGame_Menu extends Activity {
         frameAnimation.start();
 
 
-        closeWindow.setOnClickListener(new View.OnClickListener() {
+        startGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
-                finish();
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
                 startActivity(new Intent(PlayGame_Menu.this, PlayGame.class));
+                CustomIntent.customType(PlayGame_Menu.this, "fadein-to-fadeout");
             }
 
         });
+
         goBackToMenu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
+                if(External_booleans.button_vibration_effects)
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(PlayGame_Menu.this, MainActivity.class));
-                CustomIntent.customType(PlayGame_Menu.this, "bottom-to-up");
-                //pg.getPause().setBackgroundResource(R.drawable.pause_notclicked);
             }
         });
 
-        if(External_booleans.game_music_switch)                                 //checks if the game music is enabled
-            inGameMusic.setBackgroundResource(R.drawable.switch_notclicked);
-        else if(!External_booleans.game_music_switch)                           //if the music was previously disabled set other button
-            inGameMusic.setBackgroundResource(R.drawable.switch_clicked);
-
-        inGameMusic.setOnClickListener(new View.OnClickListener() {
+        controlsMan.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                if(External_booleans.getGame_music_switch()){
-                    External_booleans.setGame_music_switch(false);
-                    inGameMusic.setBackgroundResource(R.drawable.switch_clicked);
-                    PlayGame.musicPlayer.stop();
-                } else if(!External_booleans.getGame_music_switch()){
-                    External_booleans.setGame_music_switch(true);
-                    inGameMusic.setBackgroundResource(R.drawable.switch_notclicked);
-                    PlayGame.musicPlayer.start();
+            public void onClick(View v) {
+                if(External_booleans.button_vibration_effects && !External_booleans.getControls_button())
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                if(!External_booleans.getControls_button()){
+                    controlsMan.setBackgroundResource(R.drawable.dis_manual);
+                    controlsTil.setBackgroundResource(R.drawable.steering_til_btn);
+                    External_booleans.setControls_button(true);
                 }
             }
         });
 
+        controlsTil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(External_booleans.button_vibration_effects && External_booleans.getControls_button())
+                    v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+                if(External_booleans.getControls_button()) {
+                    controlsTil.setBackgroundResource(R.drawable.dis_tilting);
+                    controlsMan.setBackgroundResource(R.drawable.steering_man_btn);
+                    External_booleans.setControls_button(false);
+                }
+            }
+        });
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);

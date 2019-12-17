@@ -1,45 +1,15 @@
 package com.example.mobilegame;
 
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.database.DatabaseErrorHandler;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.UserHandle;
-import android.view.Display;
 import android.view.MotionEvent;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import static com.example.mobilegame.Constants.SCREEN_HEIGHT;
 
 public class GameplayScene implements Scene{
 
@@ -65,10 +35,10 @@ public class GameplayScene implements Scene{
 
         player = new RectPlayer(new Rect(100, 100, 200, 200), Color.RED);
 
-        playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
+        playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*SCREEN_HEIGHT/4);
         player.update(playerPoint);
 
-        obstacleManager = new ObstacleManager(500, 700, 130, Color.WHITE);
+        obstacleManager = new ObstacleManager(500, 600, 130, Color.WHITE);
 
         orientationData = new OrientationData();
         orientationData.register();
@@ -77,7 +47,7 @@ public class GameplayScene implements Scene{
     }
 
     public void reset() {
-        playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*Constants.SCREEN_HEIGHT/4);
+        playerPoint = new Point(Constants.SCREEN_WIDTH/2, 3*SCREEN_HEIGHT/4);
         player.update(playerPoint);
         obstacleManager = new ObstacleManager(400, 1000, 70, Color.WHITE);
         movingPlayer = false;
@@ -135,24 +105,16 @@ public class GameplayScene implements Scene{
             int elapsedTime = (int)(System.currentTimeMillis() - frameTime);
             frameTime = System.currentTimeMillis();
             if(orientationData.getOrientation() != null && orientationData.getStartOrientation() != null) {
-                float pitch = orientationData.getOrientation()[1] - orientationData.getStartOrientation()[1];
-                float roll = orientationData.getOrientation()[2] - orientationData.getStartOrientation()[2];
+                float xSpeed = (orientationData.getOrientation()[1] - orientationData.getStartOrientation()[1])* Constants.SCREEN_WIDTH/1000f;
 
-                float xSpeed = pitch * Constants.SCREEN_WIDTH/1000f;
-                float ySpeed = 2 * roll * Constants.SCREEN_HEIGHT/1000f;
-
-                playerPoint.x += Math.abs(xSpeed*elapsedTime) > 5 ? xSpeed*elapsedTime : 0;
-                playerPoint.y -= Math.abs(ySpeed*elapsedTime) > 5 ? ySpeed*elapsedTime : 0;
+                playerPoint.x -= Math.abs(xSpeed*elapsedTime) > 5 ? xSpeed*elapsedTime : 0;
+                playerPoint.y = 3*SCREEN_HEIGHT/4;
             }
 
             if(playerPoint.x < 0)
                 playerPoint.x = 0;
             else if(playerPoint.x > Constants.SCREEN_WIDTH)
                 playerPoint.x = Constants.SCREEN_WIDTH;
-            if(playerPoint.y < 0)
-                playerPoint.y = 0;
-            else if(playerPoint.y > Constants.SCREEN_HEIGHT)
-                playerPoint.y = Constants.SCREEN_HEIGHT;
 
             player.update(playerPoint);
             obstacleManager.update();
@@ -160,6 +122,7 @@ public class GameplayScene implements Scene{
             if(obstacleManager.playerCollide(player)) {
                 gameOver = true;
                 gameOverTime = System.currentTimeMillis();
+
             }
         }
     }

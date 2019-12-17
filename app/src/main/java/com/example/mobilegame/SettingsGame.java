@@ -20,7 +20,7 @@ import maes.tech.intentanim.CustomIntent;
 
 public class SettingsGame extends AppCompatActivity {
 
-    Button menu_m, button_s_effect, back_b, email_b;
+    Button menu_m, button_s_effect, back_b, share_b;
     ImageView imgs;
     HomeWatcher mHomeWatcher;
 
@@ -46,7 +46,7 @@ public class SettingsGame extends AppCompatActivity {
 
         button_s_effect = findViewById(R.id.button_vibration_effect);
         back_b = findViewById(R.id.backButtonSettings);
-        email_b = findViewById(R.id.heartSend);
+        share_b = findViewById(R.id.heartSend);
         menu_m = findViewById(R.id.musicMenu);
         button_s_effect = findViewById(R.id.button_vibration_effect);
 
@@ -104,7 +104,7 @@ public class SettingsGame extends AppCompatActivity {
             }
         });
 
-        email_b.setOnClickListener(new View.OnClickListener() {
+        share_b.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if(External_booleans.button_vibration_effects)                         //checks if the button sound effect is enabled
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);

@@ -13,17 +13,17 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/GamePaused"
+        android:id="@+id/AlmostGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:fontFamily="@font/eight_bit_wonder"
-        android:text="@string/gamePaused"
+        android:text="@string/almostGame"
         android:textColor="@color/titleColour"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,54 +33,66 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <TextView
-        android:id="@+id/InGameMusic"
+        android:id="@+id/ChooseControls"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/musicGame"
+        android:text="@string/chooseControls"
         android:textColor="@color/titleColour"
         android:textSize="35sp"
         app:fontFamily="@font/roboto_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52" />
+        app:layout_constraintVertical_bias="0.35" />
 
     <Button
-        android:id="@+id/ControlMusic"
-        android:layout_width="320dp"
-        android:layout_height="31dp"
-        android:background="@drawable/switch_pop_btn"
+        android:id="@+id/ManualC"
+        android:layout_width="174dp"
+        android:layout_height="70dp"
+        android:background="@drawable/dis_manual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
+        app:layout_constraintVertical_bias="0.54" />
+
+    <Button
+        android:id="@+id/TiltingC"
+        android:layout_width="197dp"
+        android:layout_height="70dp"
+        android:background="@drawable/steering_til_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
 
     <Button
         android:id="@+id/GoBackToMenu"
-        android:layout_width="127dp"
-        android:layout_height="70dp"
-        android:background="@drawable/menu_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/back_btn"
+        android:rotation="-90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.569" />
+        app:layout_constraintVertical_bias="0.923" />
 
     <Button
-        android:id="@+id/Resume"
-        android:layout_width="152dp"
-        android:layout_height="70dp"
-        android:background="@drawable/close_btn"
+        android:id="@+id/PlayGame"
+        android:layout_width="161dp"
+        android:layout_height="78dp"
+        android:background="@drawable/rplay_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.917" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-                startActivity(new Intent(MainActivity.this, PlayGame.class));
+                startActivity(new Intent(MainActivity.this, PlayGame_Menu.class));
                 CustomIntent.customType(MainActivity.this, "up-to-bottom");
+                img.setBackgroundResource(R.drawable.bcg_index);
             }
         });
 
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(MainActivity.this, SettingsGame.class));
                 CustomIntent.customType(MainActivity.this, "bottom-to-up");
-
             }
         });
 
