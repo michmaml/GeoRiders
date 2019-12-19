@@ -30,7 +30,7 @@ public class External_booleans {
     }
 
 
-    public static Boolean controls_button = true; //set to Tilting
+    public static Boolean controls_button = false; //set to Tilting
     public static Boolean getControls_button() {
         return controls_button;
     }

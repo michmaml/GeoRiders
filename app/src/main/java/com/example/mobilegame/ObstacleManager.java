@@ -14,7 +14,10 @@ public class ObstacleManager {
     private int colour;
     private long startTime;
     private long initTime;
-    private int score = 0;
+    public static int score = 0;
+    public static int getScore() {
+        return ObstacleManager.score;
+    }
 
     public ObstacleManager(int playerGap, int obstacleGap, int obstacleHeight, int colour){
         this.playerGap = playerGap;

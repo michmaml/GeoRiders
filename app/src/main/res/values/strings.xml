@@ -4,7 +4,7 @@
     <string name="comeBack">Back</string>
     <string name="description0">GeoRiders is the final project for COMP3330 - Interactive Mobile Application Design and Programming</string>
     <string name="description1">The aim of the player is to fly the furthest by avoiding obstacles</string>
-    <string name="description2">This game utilizes gyroscope and concurrency</string>
+    <string name="description2">This game utilizes gyroscope and a database</string>
     <string name="signature"> Original design and code by Michal J Sekulski</string>
     <string name="musicMenu">Menu music</string>
     <string name="musicGame">Button vibration</string>

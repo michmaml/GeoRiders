@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <TextView
         android:id="@+id/ChooseControls"
@@ -44,28 +44,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintVertical_bias="0.34" />
 
     <Button
         android:id="@+id/ManualC"
-        android:layout_width="174dp"
-        android:layout_height="70dp"
-        android:background="@drawable/dis_manual"
+        android:layout_width="162dp"
+        android:layout_height="65dp"
+        android:background="@drawable/steering_man_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.54" />
 
     <Button
         android:id="@+id/TiltingC"
-        android:layout_width="197dp"
-        android:layout_height="70dp"
-        android:background="@drawable/steering_til_btn"
+        android:layout_width="183dp"
+        android:layout_height="65dp"
+        android:background="@drawable/dis_tilting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintHorizontal_bias="0.675"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.54" />

@@ -52,7 +52,6 @@ public class PlayGame_Menu extends Activity {
             public void onClick(View v) {
                 if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-
                 startActivity(new Intent(PlayGame_Menu.this, PlayGame.class));
                 CustomIntent.customType(PlayGame_Menu.this, "fadein-to-fadeout");
             }
@@ -64,6 +63,7 @@ public class PlayGame_Menu extends Activity {
                 if(External_booleans.button_vibration_effects)
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(PlayGame_Menu.this, MainActivity.class));
+                //CustomIntent.customType(PlayGame_Menu.this, "bottom-to-up");
             }
         });
 
@@ -73,8 +73,8 @@ public class PlayGame_Menu extends Activity {
                 if(External_booleans.button_vibration_effects && !External_booleans.getControls_button())
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 if(!External_booleans.getControls_button()){
-                    controlsMan.setBackgroundResource(R.drawable.dis_manual);
-                    controlsTil.setBackgroundResource(R.drawable.steering_til_btn);
+                    controlsMan.setBackgroundResource(R.drawable.dis_manual);             //false means that manual is enabled
+                    controlsTil.setBackgroundResource(R.drawable.steering_til_btn);                  //true indicates that tilting is enabled
                     External_booleans.setControls_button(true);
                 }
             }
