@@ -4,4 +4,5 @@ I added quite a lot of features and animations to discover how Android Studio re
 I might upload the app to the Google Play store sometime soon but firstly I need to make sure I am utterly happy with the final result.
 
 Feel free to message me if any clarification is needed. 
+
 MJS :)
