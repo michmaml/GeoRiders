@@ -1,6 +1,5 @@
 package com.example.mobilegame;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -26,32 +25,30 @@ public class GameplayScene implements Scene {
     private OrientationData orientationData;
     private long frameTime;
 
-    public static boolean isGameOver() {
+    /*public static boolean isGameOver() {
         return gameOver;
-    }
+    }*/
 
     public GameplayScene() {
 
         player = new RectPlayer(new Rect(100, 100, 200, 200), Color.RED);
-
         playerPoint = new Point(Constants.SCREEN_WIDTH / 2, 3 * SCREEN_HEIGHT / 4);
         player.update(playerPoint);
 
         obstacleManager = new ObstacleManager(500, 600, 130, Color.WHITE);
-
         if(!External_booleans.getControls_button()){
             orientationData = new OrientationData();
             orientationData.register();
+            frameTime = System.currentTimeMillis();
         }
-        frameTime = System.currentTimeMillis();
-
     }
 
     public void reset() {
         playerPoint = new Point(Constants.SCREEN_WIDTH / 2, 3 * SCREEN_HEIGHT / 4);
         player.update(playerPoint);
-        obstacleManager = new ObstacleManager(400, 1000, 70, Color.WHITE);
+        obstacleManager = new ObstacleManager(500, 600, 130, Color.WHITE);
         movingPlayer = false;
+        obstacleManager.setScore(0);
     }
 
     @Override
@@ -68,7 +65,8 @@ public class GameplayScene implements Scene {
                 if (gameOver && System.currentTimeMillis() - gameOverTime >= 2000) {
                     reset();
                     gameOver = false;
-                    orientationData.newGame();
+                    if(!External_booleans.getControls_button())
+                        orientationData.newGame();
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -101,21 +99,24 @@ public class GameplayScene implements Scene {
     @Override
     public void update() {
         if (!gameOver) {
-            if (frameTime < Constants.INIT_TIME)
-                frameTime = Constants.INIT_TIME;
-            int elapsedTime = (int) (System.currentTimeMillis() - frameTime);
-            frameTime = System.currentTimeMillis();
-            if (orientationData.getOrientation() != null && orientationData.getStartOrientation() != null) {
-                float xSpeed = (orientationData.getOrientation()[1] - orientationData.getStartOrientation()[1]) * Constants.SCREEN_WIDTH / 1000f;
 
-                playerPoint.x -= Math.abs(xSpeed * elapsedTime) > 5 ? xSpeed * elapsedTime : 0;
-                playerPoint.y = 3 * SCREEN_HEIGHT / 4;
+            if(!External_booleans.getControls_button()) {
+                if (frameTime < Constants.INIT_TIME)
+                    frameTime = Constants.INIT_TIME;
+                int elapsedTime = (int) (System.currentTimeMillis() - frameTime);
+                frameTime = System.currentTimeMillis();
+                if (orientationData.getOrientation() != null && orientationData.getStartOrientation() != null) {
+                    float xSpeed = (orientationData.getOrientation()[1] - orientationData.getStartOrientation()[1]) * Constants.SCREEN_WIDTH / 1000f;
+
+                    playerPoint.x -= Math.abs(xSpeed * elapsedTime) > 5 ? xSpeed * elapsedTime : 0;
+                    playerPoint.y = 3 * SCREEN_HEIGHT / 4;
+                }
+
+                if (playerPoint.x < 0)
+                    playerPoint.x = 0;
+                else if (playerPoint.x > Constants.SCREEN_WIDTH)
+                    playerPoint.x = Constants.SCREEN_WIDTH;
             }
-
-            if (playerPoint.x < 0)
-                playerPoint.x = 0;
-            else if (playerPoint.x > Constants.SCREEN_WIDTH)
-                playerPoint.x = Constants.SCREEN_WIDTH;
 
             player.update(playerPoint);
             obstacleManager.update();
@@ -143,7 +144,7 @@ public class GameplayScene implements Scene {
         for(int i:playGame.sortedInts)
             System.out.println(i);
 
-        int position = playGame.sortedInts.indexOf(ObstacleManager.getScore());
+        int position = playGame.sortedInts.indexOf(obstacleManager.getScore());
         if(position == -1)
             System.out.println("testing");
         if(position % 10 == 0)

@@ -19,7 +19,6 @@ public class PlayGame_Menu extends Activity {
 
     Button startGame, goBackToMenu, controlsMan, controlsTil;
     ImageView imgpm;
-    PlayGame pg = new PlayGame();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +72,7 @@ public class PlayGame_Menu extends Activity {
                 if(External_booleans.button_vibration_effects && !External_booleans.getControls_button())
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 if(!External_booleans.getControls_button()){
-                    controlsMan.setBackgroundResource(R.drawable.dis_manual);             //false means that manual is enabled
+                    controlsMan.setBackgroundResource(R.drawable.dis_manual);                        //false means that manual is enabled
                     controlsTil.setBackgroundResource(R.drawable.steering_til_btn);                  //true indicates that tilting is enabled
                     External_booleans.setControls_button(true);
                 }

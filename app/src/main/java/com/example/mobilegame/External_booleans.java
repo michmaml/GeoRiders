@@ -37,5 +37,4 @@ public class External_booleans {
     public static void setControls_button(Boolean controls_button) {
         External_booleans.controls_button = controls_button;
     }
-
 }

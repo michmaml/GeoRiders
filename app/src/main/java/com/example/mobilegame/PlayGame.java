@@ -40,8 +40,8 @@ public class PlayGame extends Activity {
     * Additonally, for some reason the rank() method always prints position -1 which I assume indicates an error... */
 
 
-
-    public static MediaPlayer musicPlayer = new MediaPlayer();
+    private ObstacleManager obstacleManager;
+    public static MediaPlayer musicPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,19 +64,12 @@ public class PlayGame extends Activity {
         Constants.SCREEN_HEIGHT = dm.heightPixels;
         Constants.CURRENT_CONTEXT = this;
 
-        //if External_booleans.getControls_button() is set to false then both tilting and manual
-        //if External_booleans.getControls_button() is set to true disable magnetometer&accelerometer
-
-        if(External_booleans.getControls_button())
-            //getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-
         setContentView(new GamePanel(this));
 
         /*------------------------------------*/
 
-        musicPlayer.create(this, R.raw.game_tune);
-        if(External_booleans.getGame_music_switch())
-            musicPlayer.start();
+        musicPlayer = MediaPlayer.create(getApplicationContext(), getResources().getIdentifier("game_tune","raw",getPackageName()));
+        musicPlayer.start();
 
     }
 
@@ -134,7 +127,7 @@ public class PlayGame extends Activity {
     }
 
     public void connect() {
-        final String url = "https://i.cs.hku.hk/~sekulski/leaderboard.php" + (String.valueOf(ObstacleManager.getScore()).isEmpty() ? "" : "?action=insert&score=" + android.net.Uri.encode(String.valueOf(ObstacleManager.getScore()), "UTF-8"));
+        final String url = "https://i.cs.hku.hk/~sekulski/leaderboard.php" + (String.valueOf(obstacleManager.getScore()).isEmpty() ? "" : "?action=insert&score=" + android.net.Uri.encode(String.valueOf(obstacleManager.getScore()), "UTF-8"));
 
         AsyncTask<String, Void, String> task = new AsyncTask<String, Void, String>() {
             boolean success;

@@ -38,7 +38,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         Constants.INIT_TIME = System.currentTimeMillis();
         thread.setRunning(true);
         thread.start();
-
     }
 
     @Override
