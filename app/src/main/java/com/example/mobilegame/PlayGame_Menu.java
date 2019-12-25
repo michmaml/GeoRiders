@@ -1,3 +1,7 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import android.app.Activity;
@@ -16,6 +20,9 @@ import android.widget.ImageView;
 import maes.tech.intentanim.CustomIntent;
 
 public class PlayGame_Menu extends Activity {
+    /**
+     * Pop-up window where the user can choose the controls method and start playing or come back to the menu.s
+     * */
 
     Button startGame, goBackToMenu, controlsMan, controlsTil;
     ImageView imgpm;

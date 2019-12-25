@@ -1,3 +1,7 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +23,9 @@ import android.widget.ImageView;
 import maes.tech.intentanim.CustomIntent;
 
 public class MainActivity extends AppCompatActivity {
-
+/**
+ * Main activity, user starts here. Simple menu which includes intents to other menu activities and contains a MediaPlayer and HomeWatcher object.
+ * */
     Button playB, settingsB, aboutB;
     ImageView img;
     HomeWatcher mHomeWatcher;
@@ -52,14 +58,13 @@ public class MainActivity extends AppCompatActivity {
                 if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(MainActivity.this, PlayGame_Menu.class));
-                //CustomIntent.customType(MainActivity.this, "up-to-bottom");
                 img.setBackgroundResource(R.drawable.bcg_index);
             }
         });
 
         settingsB.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                if(External_booleans.button_vibration_effects)                   //checks if the button sound effect is enabled
+                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(MainActivity.this, SettingsGame.class));
                 CustomIntent.customType(MainActivity.this, "bottom-to-up");

@@ -1,5 +1,8 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
-
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,21 +11,20 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
+    /**
+     * Class that is responsible for maintaining the game and making use of other classes' components - brings together the thread and SceneManager
+     * */
     private MainThread thread;
 
     private SceneManager manager;
 
     public GamePanel(Context context) {
         super(context);
-
         getHolder().addCallback(this);
-
         Constants.CURRENT_CONTEXT = context;
 
         thread = new MainThread(getHolder(), this);
-
         manager = new SceneManager();
-
         setFocusable(true);
     }
 
@@ -54,12 +56,8 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         manager.receiveTouch(event);
-
         return true;
-        //return super.onTouchEvent(event);
-
     }
 
     public void update() {

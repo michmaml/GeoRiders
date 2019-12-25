@@ -1,6 +1,14 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 public class External_booleans {
+    /**
+     *  Static variables used in initial activities(MainActivity, AboutGame, SettingsGame, PlayGame_Menu.
+     *  Each Boolean variable has a getter and setter method
+     * */
 
     /*-----------RESPONSIBLE FOR BUTTON CLICKS-----------*/
     public static Boolean button_vibration_effects = true;

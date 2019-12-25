@@ -1,3 +1,7 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import android.graphics.Canvas;
@@ -5,7 +9,9 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 public class Obstacle implements GameObject{
-
+/**
+ * Obstacle class is accountable for drawing and spawning white obstacles randomly on the sreen accordingly to the rules(in on line with a gap in between)
+ * */
     private Rect rectangle;
     private Rect rectangle2;
     private int colour;

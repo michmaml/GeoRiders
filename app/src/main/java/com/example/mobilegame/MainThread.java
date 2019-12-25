@@ -1,14 +1,16 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-
-/**
- * Created by Anton on 15/08/2017.
- */
-
 public class MainThread extends Thread {
+    /**
+     * Thread responsible for making things work 'behind the scenes'. Is responsible for adequate refreshment rate and running the game.
+     * */
     private static final int MAX_FPS = 30;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
@@ -74,7 +76,6 @@ public class MainThread extends Thread {
                 averageFPS = 1000 / ((totalTime / frameCount) / 1000000);
                 frameCount = 0;
                 totalTime = 0;
-                //System.out.println("AverageFPS "+ averageFPS);
             }
         }
     }

@@ -1,3 +1,7 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import android.graphics.Canvas;
@@ -7,6 +11,9 @@ import android.graphics.Paint;
 import java.util.ArrayList;
 
 public class ObstacleManager {
+    /**
+     * Draws and is responsible of spawning the obstacles. It contains the constrains and guidelines for Obstacle.class
+     */
     private ArrayList<Obstacle> obstacles;
     private int playerGap;
     private int obstacleGap;
@@ -14,7 +21,7 @@ public class ObstacleManager {
     private int colour;
     private long startTime;
     private long initTime;
-    public int score = 0;
+    public  int score = 0;
     public int getScore() {
         return score;
     }

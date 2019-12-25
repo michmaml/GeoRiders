@@ -1,3 +1,7 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import android.app.Service;
@@ -8,6 +12,9 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 public class MusicService extends Service implements MediaPlayer.OnErrorListener {
+    /**
+     * MusicPlayer's foundation, some of the elements are used in MainActivity, SettingGame and AboutGame.
+     * */
 
     private final IBinder mBinder = new ServiceBinder();
     MediaPlayer mPlayer;

@@ -1,3 +1,7 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import android.content.Context;
@@ -7,6 +11,9 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
 public class OrientationData implements SensorEventListener {
+    /**
+     * Sets the gyroscope and creates methods used in GameplayScene to create the user's character.
+     * */
     private SensorManager manager;
     private Sensor accelerometer;
     private Sensor magnometer;

@@ -1,3 +1,8 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
+
 package com.example.mobilegame;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +24,14 @@ import android.widget.ImageView;
 import maes.tech.intentanim.CustomIntent;
 
 public class AboutGame extends AppCompatActivity {
+    /*
+    * This activity is a simple informative activity to help the user understand the general idea
+    * and explain a thing or two.
+    * It consists of:
+    *   -Simple textViews to display instructions and clarifications
+    *   -Button to come back to the @menu
+    *   -HomeWatcher which is responsible of extending the @menu_tune among all initial activities
+    * */
 
     Button back;
     ImageView imga;
@@ -47,10 +60,10 @@ public class AboutGame extends AppCompatActivity {
 
         back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                if(External_booleans.button_vibration_effects)                          //checks if the button sound effect is enabled
+                if(External_booleans.button_vibration_effects)                              //checks if the button sound effect is enabled
                     v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 startActivity(new Intent(AboutGame.this, MainActivity.class));
-                CustomIntent.customType(AboutGame.this,"right-to-left");
+                CustomIntent.customType(AboutGame.this,"right-to-left");    //custom intent transition
 
             }
         });

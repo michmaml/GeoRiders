@@ -1,3 +1,7 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import android.graphics.Canvas;
@@ -7,12 +11,18 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 import static com.example.mobilegame.Constants.SCREEN_HEIGHT;
 
 public class GameplayScene implements Scene {
+/**
+ * GameplayScene creates and draws everything related to the gameplay scene with the player and obstacles.
+ * */
 
     private Rect r = new Rect();
-    private PlayGame playGame = new PlayGame();
 
     private RectPlayer player;
     private Point playerPoint;
@@ -25,13 +35,11 @@ public class GameplayScene implements Scene {
     private OrientationData orientationData;
     private long frameTime;
 
-    /*public static boolean isGameOver() {
-        return gameOver;
-    }*/
+    public ArrayList<Integer> sortedInts = new ArrayList<>();
 
     public GameplayScene() {
 
-        player = new RectPlayer(new Rect(100, 100, 200, 200), Color.RED);
+        player = new RectPlayer(new Rect(100, 100, 200, 200), Color.rgb(225,24,166));
         playerPoint = new Point(Constants.SCREEN_WIDTH / 2, 3 * SCREEN_HEIGHT / 4);
         player.update(playerPoint);
 
@@ -55,7 +63,6 @@ public class GameplayScene implements Scene {
     public void terminate() {
         SceneManager.ACTIVE_SCENE = 0;
     }
-
     @Override
     public void receiveTouch(MotionEvent event) {
         switch (event.getAction()) {
@@ -91,7 +98,6 @@ public class GameplayScene implements Scene {
             Paint paint = new Paint();
             paint.setTextSize(100);
             paint.setColor(Color.MAGENTA);
-            playGame.connect();
             drawCenterText(canvas, paint, "Game Over, you ranked " + rank());
         }
     }
@@ -140,20 +146,9 @@ public class GameplayScene implements Scene {
     }
 
     private String rank() {
-        //for testing purposes
-        for(int i:playGame.sortedInts)
-            System.out.println(i);
-
-        int position = playGame.sortedInts.indexOf(obstacleManager.getScore());
-        if(position == -1)
-            System.out.println("testing");
-        if(position % 10 == 0)
-            return position + "st";
-        else if(position % 10 == 1)
-            return position + "nd";
-        else if(position % 10 == 2)
-            return position + "rd";
-        else
-            return position + "th";
+        sortedInts.add(obstacleManager.getScore());
+        Collections.reverse(sortedInts);
+        int position = sortedInts.indexOf(obstacleManager.getScore());
+        return String.valueOf(position + 1);
     }
 }

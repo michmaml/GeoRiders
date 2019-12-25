@@ -1,3 +1,7 @@
+/**
+ * @Author: Michal J Sekulski
+ * Dec 2019, mjsekulski1@gmail.com
+ * */
 package com.example.mobilegame;
 
 import android.content.BroadcastReceiver;
@@ -6,8 +10,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 public class HomeWatcher {
+    /**
+     * This class is directly connected to the MusicService, keeping the music playing in every menu's activity.
+     * */
 
-    //static final String TAG = "hg";
     private Context mContext;
     private IntentFilter mFilter;
     private OnHomePressedListener mListener;
@@ -29,15 +35,8 @@ public class HomeWatcher {
         }
     }
 
-    public void stopWatch() {
-        if (mRecevier != null) {
-            mContext.unregisterReceiver(mRecevier);
-        }
-    }
-
     class InnerRecevier extends BroadcastReceiver {
         final String SYSTEM_DIALOG_REASON_KEY = "reason";
-        final String SYSTEM_DIALOG_REASON_GLOBAL_ACTIONS = "globalactions";
         final String SYSTEM_DIALOG_REASON_RECENT_APPS = "recentapps";
         final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey";
 
