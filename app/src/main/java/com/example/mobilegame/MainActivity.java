@@ -27,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
  * Main activity, user starts here. Simple menu which includes intents to other menu activities and contains a MediaPlayer and HomeWatcher object.
  * */
     Button playB, settingsB, aboutB;
-    ImageView img;
     HomeWatcher mHomeWatcher;
+    public static ImageView img;
+    public static ImageView getImg() {
+        return MainActivity.img;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

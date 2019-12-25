@@ -12,8 +12,7 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
+//import java.util.Collections;
 
 import static com.example.mobilegame.Constants.SCREEN_HEIGHT;
 
@@ -29,13 +28,13 @@ public class GameplayScene implements Scene {
     private ObstacleManager obstacleManager;
 
     private boolean movingPlayer = false;
-    public static boolean gameOver = false;
+    private static boolean gameOver = false;
     private long gameOverTime;
 
     private OrientationData orientationData;
     private long frameTime;
 
-    public ArrayList<Integer> sortedInts = new ArrayList<>();
+    //private ArrayList<Integer> sortedInts = new ArrayList<>();
 
     public GameplayScene() {
 
@@ -51,7 +50,7 @@ public class GameplayScene implements Scene {
         }
     }
 
-    public void reset() {
+    private void reset() {
         playerPoint = new Point(Constants.SCREEN_WIDTH / 2, 3 * SCREEN_HEIGHT / 4);
         player.update(playerPoint);
         obstacleManager = new ObstacleManager(500, 600, 130, Color.WHITE);
@@ -98,7 +97,7 @@ public class GameplayScene implements Scene {
             Paint paint = new Paint();
             paint.setTextSize(100);
             paint.setColor(Color.MAGENTA);
-            drawCenterText(canvas, paint, "Game Over, you ranked " + rank());
+            drawCenterText(canvas, paint, "Game Over! Better luck next time :)!");//, you ranked " + rank());
         }
     }
 
@@ -145,10 +144,10 @@ public class GameplayScene implements Scene {
         canvas.drawText(text, x, y, paint);
     }
 
-    private String rank() {
+    /*private String rank() {
         sortedInts.add(obstacleManager.getScore());
-        Collections.reverse(sortedInts);
+        Collections.sort(sortedInts, Collections.reverseOrder());
         int position = sortedInts.indexOf(obstacleManager.getScore());
         return String.valueOf(position + 1);
-    }
+    }*/
 }

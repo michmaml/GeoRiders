@@ -49,4 +49,22 @@ public class PlayGame extends Activity {
         musicPlayer.setLooping(true);               //responsible for bad looping
 
     }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        musicPlayer.pause();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        musicPlayer.start();
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        musicPlayer.stop();
+    }
 }

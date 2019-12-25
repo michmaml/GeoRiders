@@ -19,6 +19,8 @@ import android.widget.ImageView;
 
 import maes.tech.intentanim.CustomIntent;
 
+import static com.example.mobilegame.MainActivity.getImg;
+
 public class PlayGame_Menu extends Activity {
     /**
      * Pop-up window where the user can choose the controls method and start playing or come back to the menu.s
@@ -113,5 +115,14 @@ public class PlayGame_Menu extends Activity {
         params.y = -20;
 
         getWindow().setAttributes(params);
+    }
+
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        External_booleans.setMenu_music_switch(true);
+        getImg().setBackgroundResource(R.drawable.spin_animation_main);
+        AnimationDrawable frameAnimation = (AnimationDrawable) getImg().getBackground();
+        frameAnimation.start();
     }
 }
