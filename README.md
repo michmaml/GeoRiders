@@ -6,3 +6,6 @@ I might upload the app to the Google Play store sometime soon but firstly I need
 Feel free to message me if any clarification is needed. 
 
 MJS :)
+
+![Main-Menu](Main-Menu.jpg)
+
